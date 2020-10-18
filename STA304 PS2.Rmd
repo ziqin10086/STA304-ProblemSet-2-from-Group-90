@@ -76,7 +76,7 @@ Since we are using a linear regression here with the stratified sampling, we are
 
 Table I. Linear regression model fitting results
 
-```{r}
+```{r, echo = FALSE}
 summary(svyglm.strs)
 ```
 
@@ -87,7 +87,7 @@ $N=2.46956-0.63575Prov_B-0.59101Prov_M+\dots+0.110309Pop_N$
 All the notations can be interpreted as discussed in the Model section. Since there are 44 variables, we cannot write down all of them. But basically, the $\beta$ value for each variable is the corresponding estimate value showed in Table I.
 
 Figure 1. Diagnostics on the fitted model
-```{r}
+```{r， echo = FALSE}
 par(mfrow=c(1,2))
 resid <- svyglm.strs$residuals
 qqnorm(resid)
