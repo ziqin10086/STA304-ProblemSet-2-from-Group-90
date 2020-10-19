@@ -70,7 +70,7 @@ data_final$fpc <- ifelse(data_final$province=="Alberta",4067175,ifelse(data_fina
 design.strs<-svydesign(id=~1,strata=~province, data=data_final, fpc=~fpc)
 svyglm.strs <- svyglm(number_total_children_intention ~ province+marital_status+education+religion_has_affiliation+occupation+ever_married+age+total_children+region+income_family+sex+pop_center, design=design.strs, family="gaussian")
 #summary(svyglm.strs)
-#summary.lm(svyglm.strs) 
+#summary.lm(svyglm.strs)  this can review the R squaredthis can review the R squared
 ```
 The logistic regression is performed since the data set of GSS contains mostly catagorical variables. To analyze the selected sample, we use the stratified sampling method under the linear regression since the response variable is a numerical variable instead of a categorical one. The strata here is the province instead of the specific strata defined in the manuscript because we cannot find the corresponding variable in the cleaned data set. Fortunately, the province itself can also be treated as a "large" strata as well. We use the finite population correction (fpc) to adjust the variance when the total population of interests are sampled. The value of finite population correction in our model is based on the population number presented on Wikipedia (Wikipedia, 2020)
 
