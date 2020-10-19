@@ -63,7 +63,10 @@ data_final <- na.omit(data_final)
 
 ## Model
 ```{r, echo=FALSE}
+# assign population to specific provinces
 data_final$fpc <- ifelse(data_final$province=="Alberta",4067175,ifelse(data_final$province=="British Columbia",4648055,ifelse(data_final$province=="Manitoba",1278365,ifelse(data_final$province=="New Brunswick",747101,ifelse(data_final$province=="Newfoundland and Labrador",519716,ifelse(data_final$province=="Nova Scotia",923598,ifelse(data_final$province=="Ontario",13448494,ifelse(data_final$province=="Prince Edward Island",142907,ifelse(data_final$province=="Quebec",8164361,ifelse(data_final$province=="Saskatchewan",1098352,0))))))))))
+
+# construct the survey-weighted logit model
 design.strs<-svydesign(id=~1,strata=~province, data=data_final, fpc=~fpc)
 svyglm.strs <- svyglm(number_total_children_intention ~ province+marital_status+education+religion_has_affiliation+occupation+ever_married+age+total_children+region+income_family+sex+pop_center, design=design.strs, family="gaussian")
 #summary(svyglm.strs)
